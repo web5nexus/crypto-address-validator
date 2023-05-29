@@ -314,6 +314,15 @@ describe('WAValidator.validate()', function () {
             valid('0x8617E340B3D01FA5F11F306F4090FD50E238070D', 'bnb');
         });
 
+        it('should return true for correct XinFin coin addresses', function () {
+            valid('xdcE37c0D48d68da5c5b14E5c1a9f1CFE802776D9FF', 'xinfin');
+            valid('xdca00354276d2fC74ee91e37D085d35748613f4748', 'XinFin');
+            valid('xdcAff4d6793F584a473348EbA058deb8caad77a288', 'XDC');
+            valid('xdcc6d9d2cd449a754c494264e1809c50e34d64562b', 'xdc');
+            valid('xdc52908400098527886E0F7030069857D2E4169EE7', 'XDC');
+            valid('xdc8617E340B3D01FA5F11F306F4090FD50E238070D', 'xdc');
+        });
+
         it('should return true for correct Ripple addresses', function () {
             valid('rG1QQv2nh2gr7RCZ1P8YYcBUKCCN633jCn', 'ripple');
             valid('rG1QQv2nh2gr7RCZ1P8YYcBUKCCN633jCn', 'XRP');
@@ -1155,6 +1164,15 @@ describe('WAValidator.validate()', function () {
 
             invalid('158237019269308898689L', 'lsk');
             invalid('158237A192B930C898689L', 'lsk');
+        });
+
+        it('should return false for incorrect XinFin - XDC addresses', function () {
+            commonTests('xdc');
+            invalid('0x27eE351eD15FdA06229b5edC68AA0439A47Ee56F', 'xdc');
+            invalid('bX27eE351eD15FdA06229b5edC68AA0439A47Ee56F', 'XinFin');
+            invalid('cosmos27eE351eD15FdA06229b5edC68AA0439A47Ee56F', 'xdc');
+            invalid('avvc27eE351eD15FdA06229b5edC68AA0439A47Ee56F', 'XDC');
+
         });
 
         it('should return false for incorrect bsv addresses', function () {

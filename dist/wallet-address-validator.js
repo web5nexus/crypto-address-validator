@@ -11876,6 +11876,7 @@ module.exports = {
 },{"./base32":43,"./base58":44,"./blake256":47,"./blake2b":48,"./sha3":51,"browserify-bignum":3,"buffer":4,"js-sha512":32,"jssha":33}],53:[function(require,module,exports){
 var XRPValidator = require('./ripple_validator');
 var ETHValidator = require('./ethereum_validator');
+var XDCValidator = require('./xdc_validator');
 var BTCValidator = require('./bitcoin_validator');
 var ADAValidator = require('./ada_validator');
 var XMRValidator = require('./monero_validator');
@@ -12113,6 +12114,10 @@ var CURRENCIES = [{
         name: 'Ethereum',
         symbol: 'eth',
         validator: ETHValidator,
+    }, {
+        name: 'XinFin',
+        symbol: 'xdc',
+        validator: XDCValidator,
     }, {
         name: 'EthereumPow',
         symbol: 'ethw',
@@ -12500,19 +12505,7 @@ var CURRENCIES = [{
     }
 };
 
-////spit out details for readme.md
-// CURRENCIES
-//     .sort((a, b) => a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1)
-//     .forEach(c => console.log(`* ${c.name}/${c.symbol} \`'${c.name}'\` or \`'${c.symbol}'\` `));
-
-////spit out keywords for package.json
-// CURRENCIES
-//     .sort((a, b) => a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1)
-//     .forEach(c => console.log(`"${c.name}","${c.symbol}",`));
-//
-
-
-},{"./ada_validator":37,"./algo_validator":38,"./base58_validator":39,"./bch_validator":40,"./bip173_validator":41,"./bitcoin_validator":42,"./dot_validator":54,"./eos_validator":55,"./ethereum_validator":56,"./lisk_validator":57,"./monero_validator":58,"./nano_validator":59,"./nem_validator":60,"./ripple_validator":61,"./siacoin_validator":62,"./stellar_validator":63,"./tezos_validator":64,"./tron_validator":65,"./usdt_validator":66}],54:[function(require,module,exports){
+},{"./ada_validator":37,"./algo_validator":38,"./base58_validator":39,"./bch_validator":40,"./bip173_validator":41,"./bitcoin_validator":42,"./dot_validator":54,"./eos_validator":55,"./ethereum_validator":56,"./lisk_validator":57,"./monero_validator":58,"./nano_validator":59,"./nem_validator":60,"./ripple_validator":61,"./siacoin_validator":62,"./stellar_validator":63,"./tezos_validator":64,"./tron_validator":65,"./usdt_validator":66,"./xdc_validator":68}],54:[function(require,module,exports){
 const cryptoUtils = require('./crypto/utils');
 
 // from https://github.com/paritytech/substrate/wiki/External-Address-Format-(SS58)
@@ -13021,5 +13014,43 @@ module.exports = {
     }
 };
 
-},{"./currencies":53}]},{},[67])(67)
+},{"./currencies":53}],68:[function(require,module,exports){
+var cryptoUtils = require('./crypto/utils');
+
+module.exports = {
+    isValidAddress: function (address) {
+        address = '0x'+ String(address).slice(3);
+        if (!/^0x[0-9a-fA-F]{40}$/.test(address)) {
+            // Check if it has the basic requirements of an address
+            return false;
+        }
+
+        if (/^0x[0-9a-f]{40}$/.test(address) || /^0x?[0-9A-F]{40}$/.test(address)) {
+            // If it's all small caps or all all caps, return true
+            return true;
+        }
+
+        // Otherwise check each case
+        return this.verifyChecksum(address);
+    },
+    verifyChecksum: function (address) {
+        // Check each case
+        address = address.replace('0x','');
+        // address = ''+ String(address).slice(3);
+
+        var addressHash = cryptoUtils.keccak256(address.toLowerCase());
+
+        for (var i = 0; i < 40; i++ ) {
+            // The nth letter should be uppercase if the nth digit of casemap is 1
+            if ((parseInt(addressHash[i], 16) > 7 && address[i].toUpperCase() !== address[i]) ||
+                (parseInt(addressHash[i], 16) <= 7 && address[i].toLowerCase() !== address[i])) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+};
+
+},{"./crypto/utils":52}]},{},[67])(67)
 });

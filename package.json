@@ -1,6 +1,6 @@
 {
-    "name": "multicoin-address-validator",
-    "description": "Multicoin address validator for Bitcoin and other Altcoins.",
+    "name": "crypto-address-validator",
+    "description": "crypto address validator for Bitcoin, Ethereum, XDC and other Altcoins.",
     "keywords": [
         "0x","zrx",
         "Aave Coin","aave",
@@ -124,17 +124,18 @@
         "VoteCoin","vot",
         "Waves","waves",
         "Wings","wings",
+        "XinFin","xdc",
         "ZCash","zec",
         "ZClassic","zcl",
         "ZenCash","zen"
     ],
-    "version": "0.5.12",
-    "author": "Chris <chris.tsim@gmail.com>",
-    "homepage": "https://github.com/christsim/multicoin-address-validator",
+    "version": "0.1.0",
+    "author": "Jetso Analin <jetyjetso@gmail.com>",
+    "homepage": "https://github.com/web5nexus/crypto-address-validator",
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "https://github.com/christsim/multicoin-address-validator.git"
+        "url": "https://github.com/web5nexus/crypto-address-validator.git"
     },
     "main": "src/wallet_address_validator",
     "engines": {

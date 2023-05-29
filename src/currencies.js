@@ -1,5 +1,6 @@
 var XRPValidator = require('./ripple_validator');
 var ETHValidator = require('./ethereum_validator');
+var XDCValidator = require('./xdc_validator');
 var BTCValidator = require('./bitcoin_validator');
 var ADAValidator = require('./ada_validator');
 var XMRValidator = require('./monero_validator');
@@ -237,6 +238,10 @@ var CURRENCIES = [{
         name: 'Ethereum',
         symbol: 'eth',
         validator: ETHValidator,
+    }, {
+        name: 'XinFin',
+        symbol: 'xdc',
+        validator: XDCValidator,
     }, {
         name: 'EthereumPow',
         symbol: 'ethw',
@@ -623,15 +628,3 @@ var CURRENCIES = [{
         return CURRENCIES;
     }
 };
-
-////spit out details for readme.md
-// CURRENCIES
-//     .sort((a, b) => a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1)
-//     .forEach(c => console.log(`* ${c.name}/${c.symbol} \`'${c.name}'\` or \`'${c.symbol}'\` `));
-
-////spit out keywords for package.json
-// CURRENCIES
-//     .sort((a, b) => a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1)
-//     .forEach(c => console.log(`"${c.name}","${c.symbol}",`));
-//
-

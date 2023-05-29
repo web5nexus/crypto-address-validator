@@ -1,9 +1,5 @@
-# wallet-address-validator
-Simple wallet address validator for validating Bitcoin and other altcoins addresses in **Node.js and browser**.
-
-[![Build Status](https://travis-ci.org/christsim/multicoin-address-validator.svg?branch=master)](https://travis-ci.org/christsim/multicoin-address-validator)
-
-Forked from [ryanralph/altcoin-address](https://github.com/ryanralph/altcoin-address).
+# crypto-address-validator
+Simple wallet address validator for validating Bitcoin, Ethereum, XDC and other altcoins addresses in **Node.js and browser**.
 
 **File size is ~17 kB (minifed and gzipped)**.
 
@@ -11,12 +7,12 @@ Forked from [ryanralph/altcoin-address](https://github.com/ryanralph/altcoin-add
 
 ### NPM
 ```
-npm install multicoin-address-validator
+npm install crypto-address-validator
 ```
 
 ### Browser
 ```html
-<script src="wallet-address-validator.min.js"></script>
+<script src="crypto-address-validator.min.js"></script>
 ```
 
 ## API
@@ -25,7 +21,7 @@ npm install multicoin-address-validator
 
 ###### Parameters
 * address - Wallet address to validate.
-* currency - Optional. Currency name or symbol, e.g. `'bitcoin'` (default), `'litecoin'` or `'LTC'`
+* currency - Optional. Currency name or symbol, e.g. `'bitcoin'` (default), `'litecoin'` or `'LTC'`, `'xinfin'` or `'XDC'`
 * networkType - Optional. Use `'prod'` (default) to enforce standard address, `'testnet'` to enforce testnet address and `'both'` to enforce nothing.
 
 > Returns true if the address (string) is a valid wallet address for the crypto currency specified, see below for supported currencies.
@@ -154,6 +150,7 @@ npm install multicoin-address-validator
 * VoteCoin/vot `'VoteCoin'` or `'vot'`
 * Waves/waves `'Waves'` or `'waves'`
 * Wings/wings `'Wings'` or `'wings'`
+* XinFin/xdc `'XinFin'` or `'xdc'`
 * ZCash/zec `'ZCash'` or `'zec'`
 * ZClassic/zcl `'ZClassic'` or `'zcl'`
 * ZenCash/zen `'ZenCash'` or `'zen'`
@@ -163,8 +160,22 @@ npm install multicoin-address-validator
 ### Usage example
 
 #### Node
+
 ```javascript
-var WAValidator = require('multicoin-address-validator');
+
+var WAValidator = require('crypto-address-validator');
+
+var valid = WAValidator.validate('xdcAd9b97fa8f28daCa6731d116d6fD2C72A164Ae0b', 'xdc');
+if(valid)
+    console.log('This is a valid address');
+else
+    console.log('Address INVALID');
+
+// This will log 'This is a valid address' to the console.
+`
+
+```javascript
+var WAValidator = require('crypto-address-validator');
 
 var valid = WAValidator.validate('1KFzzGtDdnq5hrwxXGjwVnKzRbvf8WVxck', 'BTC');
 if(valid)
@@ -176,7 +187,7 @@ else
 ```
 
 ```javascript
-var WAValidator = require('multicoin-address-validator');
+var WAValidator = require('crypto-address-validator');
 
 var valid = WAValidator.validate('1KFzzGtDdnq5hrwxXGjwVnKzRbvf8WVxck', 'litecoin', 'testnet');
 if(valid)
@@ -188,7 +199,7 @@ else
 ```
 
 ```javascript
-var WAValidator = require('multicoin-address-validator');
+var WAValidator = require('crypto-address-validator');
 
 var currency = WAValidator.findCurrency('xrp');
 if(currency)
@@ -200,7 +211,7 @@ else
 ```
 
 ```javascript
-var WAValidator = require('multicoin-address-validator');
+var WAValidator = require('crypto-address-validator');
 
 var currency = WAValidator.findCurrency('random');
 if(currency)
@@ -217,7 +228,7 @@ else
 
 ```javascript
 // WAValidator is exposed as a global (window.WAValidator)
-var valid = WAValidator.validate('1KFzzGtDdnq5hrwxXGjwVnKzRbvf8WVxck', 'bitcoin');
+var valid = WAValidator.validate('xdcAd9b97fa8f28daCa6731d116d6fD2C72A164Ae0b', 'xdc');
 if(valid)
     alert('This is a valid address');
 else
