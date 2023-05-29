@@ -1,5 +1,5 @@
 {
-    "name": "crypto-address-validator",
+    "name": "@web5nexus/crypto-address-validator",
     "description": "crypto address validator for Bitcoin, Ethereum, XDC and other Altcoins.",
     "keywords": [
         "0x","zrx",

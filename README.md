@@ -1,4 +1,4 @@
-# crypto-address-validator
+# @web5nexus/crypto-address-validator
 Simple wallet address validator for validating Bitcoin, Ethereum, XDC and other altcoins addresses in **Node.js and browser**.
 
 **File size is ~17 kB (minifed and gzipped)**.
@@ -7,7 +7,7 @@ Simple wallet address validator for validating Bitcoin, Ethereum, XDC and other 
 
 ### NPM
 ```
-npm install crypto-address-validator
+npm install @web5nexus/crypto-address-validator
 ```
 
 ### Browser
@@ -163,7 +163,7 @@ npm install crypto-address-validator
 
 ```javascript
 
-var WAValidator = require('crypto-address-validator');
+var WAValidator = require('@web5nexus/crypto-address-validator');
 
 var valid = WAValidator.validate('xdcAd9b97fa8f28daCa6731d116d6fD2C72A164Ae0b', 'xdc');
 if(valid)
@@ -175,7 +175,7 @@ else
 `
 
 ```javascript
-var WAValidator = require('crypto-address-validator');
+var WAValidator = require('@web5nexus/crypto-address-validator');
 
 var valid = WAValidator.validate('1KFzzGtDdnq5hrwxXGjwVnKzRbvf8WVxck', 'BTC');
 if(valid)
@@ -187,7 +187,7 @@ else
 ```
 
 ```javascript
-var WAValidator = require('crypto-address-validator');
+var WAValidator = require('@web5nexus/crypto-address-validator');
 
 var valid = WAValidator.validate('1KFzzGtDdnq5hrwxXGjwVnKzRbvf8WVxck', 'litecoin', 'testnet');
 if(valid)
@@ -199,7 +199,7 @@ else
 ```
 
 ```javascript
-var WAValidator = require('crypto-address-validator');
+var WAValidator = require('@web5nexus/crypto-address-validator');
 
 var currency = WAValidator.findCurrency('xrp');
 if(currency)
@@ -211,7 +211,7 @@ else
 ```
 
 ```javascript
-var WAValidator = require('crypto-address-validator');
+var WAValidator = require('@web5nexus/crypto-address-validator');
 
 var currency = WAValidator.findCurrency('random');
 if(currency)
